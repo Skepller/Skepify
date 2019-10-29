@@ -640,7 +640,7 @@ function toast(title, subtitle) {
   clearTimeout(closetimer);
   closetimer = setTimeout(function () {
     document.getElementById('toast').className = 'toast';
-    document.getElementById('options').style.display = 'none';
+    document.getElementById('floatingcover').style.display = 'flex';
   }, 10000);
 }
 
@@ -656,7 +656,7 @@ function setNowPlayingTrack(track) {
   document.getElementById('floatingcover').style.display = 'flex';
   document.getElementById('floatingname').innerHTML = trackName;
   document.getElementById('floatingartist').innerHTML = artistName;
-  document.getElementById('floatingimage').innerHTML='<img id="floatingimage" src="'+track.album.images[0].url+'">';
+  document.getElementById('imageholder').innerHTML='<img id="floatingimage" src="'+track.album.images[0].url+'">';
   fetchArtist(track.artists[0].uri, function(artist) {
     artist.images.forEach(function(image) {
         if (image.width >= 640) {
@@ -672,6 +672,7 @@ function setNowPlayingTrack(track) {
 
 function showtoast(){
   toast(trackName, artistName + ' - ' + albumName);
+  document.getElementById('floatingcover').style.display = 'none';
 }
 
 function getTrackInfo(trackURI){
