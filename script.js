@@ -641,7 +641,7 @@ function toast(title, subtitle) {
   closetimer = setTimeout(function () {
     document.getElementById('toast').className = 'toast';
     document.getElementById('floatingcover').style.display = 'flex';
-  }, 10000);
+  }, 8000);
 }
 
 function setNowPlayingTrack(track) {
@@ -653,10 +653,9 @@ function setNowPlayingTrack(track) {
   imageList.length = 0;
   imageList.push(track.album.images[0].url);
   console.log("TENTEI: "+track.album.images[0].url);
-  document.getElementById('floatingcover').style.display = 'flex';
   document.getElementById('floatingname').innerHTML = trackName;
   document.getElementById('floatingartist').innerHTML = artistName;
-  document.getElementById('imageholder').innerHTML='<img id="floatingimage" src="'+track.album.images[0].url+'"/>';
+  document.getElementById('imageholder').innerHTML='<img style="height: 15%;width: 15%;padding-right: 15px;" src="'+track.album.images[0].url+'"/>';
   fetchArtist(track.artists[0].uri, function(artist) {
     artist.images.forEach(function(image) {
         if (image.width >= 640) {
