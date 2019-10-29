@@ -200,5 +200,7 @@ div.trackposition div.fill {
 }
 
 #floatingimage{
+  max-height: 350px;
+  width: auto;
   padding-right: 15px;
 }

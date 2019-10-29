@@ -652,10 +652,9 @@ function setNowPlayingTrack(track) {
   curTrack = track;
   imageList.length = 0;
   imageList.push(track.album.images[0].url);
-  console.log("TENTEI: "+track.album.images[0].url);
+  document.getElementById('floatingcover').innerHTML = '<div id="floatingcover" style="display: none"><img id="floatingimage" src="'+track.album.images[0].url+'"/><div><span id="floatingname"><span></span></span><br><span id="floatingartist"><span></span></span></div></div>'
   document.getElementById('floatingname').innerHTML = trackName;
   document.getElementById('floatingartist').innerHTML = artistName;
-  document.getElementById('imageholder').innerHTML='<img style="height: 15%;width: 15%;padding-right: 15px;" src="'+track.album.images[0].url+'"/>';
   fetchArtist(track.artists[0].uri, function(artist) {
     artist.images.forEach(function(image) {
         if (image.width >= 640) {
