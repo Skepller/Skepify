@@ -29,7 +29,7 @@ canvas {
 .biglogin {
   display: none;
   position: absolute;
-  top: 50%;
+  top: 40%;
   width: 100%;
   text-align: center;
 }
@@ -101,7 +101,7 @@ div.toast #previous {
   bottom: 1em;
 }
 
-div.toast #previous:hover, div.toast #next:hover, #options>#full-screen:hover {
+div.toast #previous:hover, div.toast #next:hover, #options>#full-screen:hover, #options>#refresh:hover, #options>#changeAcc:hover {
   color: gray;
 }
 
@@ -142,6 +142,16 @@ div.trackposition div.fill {
 }
 
 #options>#full-screen {
+  font-size: 25pt;
+  color: white;
+}
+
+#options>#refresh {
+  font-size: 25pt;
+  color: white;
+}
+
+#options>#changeAcc {
   font-size: 25pt;
   color: white;
 }
@@ -202,4 +212,31 @@ div.trackposition div.fill {
   max-width: 25%;
   height: auto;
   padding-right: 15px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 220px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  font-size: 25px;
+  font-family: Share, sans-serif;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

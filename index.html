@@ -13,11 +13,17 @@
 </head>
 
 <body onmousemove="showtoast();" onmousedown="showtoast();" id="body">
-  <div id="options"><i onclick="goFullScreen()" id="full-screen" class="fas fa-external-link-square-alt"></i></div>
+  <div id="options">
+    <i onclick="refresh()" id="refresh" class="fas fa-sync-alt tooltip"><span class="tooltiptext">Refresh</span></i>
+    <br><br>
+    <i onclick="changeAcc()" id="changeAcc" class="fas fa-exchange-alt tooltip"><span class="tooltiptext">Change Account</span></i>
+    <br><br>
+    <i onclick="goFullScreen()" id="full-screen" class="fas fa-compress tooltip"><span class="tooltiptext">Fullscreen</span></i>
+  </div>
   <canvas id="canvas" style="border: none; width:100%; height:100%;" width="1200" height="800">
   </canvas><br />
   <div id="biglogin" class="biglogin">
-    <img src="skepify logo.png"/>
+    <img src="skepify logo.png" />
     <a onclick="login()">Sign in to Spotify</a></div>
   <div id="bar"></div>
   <div id="floatingcover" style="display: none">

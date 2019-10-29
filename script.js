@@ -640,7 +640,7 @@ function toast(title, subtitle) {
   clearTimeout(closetimer);
   closetimer = setTimeout(function () {
     document.getElementById('toast').className = 'toast';
-    document.getElementById('floatingcover').style.display = 'flex';
+    showAll();
   }, 8000);
 }
 
@@ -670,7 +670,7 @@ function setNowPlayingTrack(track) {
 
 function showtoast(){
   toast(trackName, artistName + ' - ' + albumName);
-  document.getElementById('floatingcover').style.display = 'none';
+  hideAll();
 }
 
 function getTrackInfo(trackURI){
@@ -868,6 +868,28 @@ function goFullScreen(){
   } else if (elem.webkitRequestFullscreen) {
     elem.webkitRequestFullscreen();
   }
+}
+
+function hideAll(){
+  document.getElementById('floatingcover').style.display = 'none';
+  document.getElementById('options').style.display = 'inline';
+}
+
+function showAll(){
+  document.getElementById('floatingcover').style.display = 'flex';
+  document.getElementById('options').style.display = 'none';
+}
+
+function changeAcc(){
+  if(document.getElementById('biglogin').offsetParent === null){
+    showLogin();
+  } else{
+    hideLogin();
+  }
+}
+
+function refresh(){
+  window.location.reload(true)
 }
 
 
