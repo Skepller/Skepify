@@ -169,7 +169,6 @@ div.trackposition div.fill {
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
-  min-height: 210px;
   padding: 30px;
   z-index: 200;
   text-align: left
@@ -200,7 +199,7 @@ div.trackposition div.fill {
 }
 
 #floatingimage{
-  max-height: 350px;
-  width: auto;
+  max-width: 25%;
+  height: auto;
   padding-right: 15px;
 }

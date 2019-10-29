@@ -652,7 +652,7 @@ function setNowPlayingTrack(track) {
   curTrack = track;
   imageList.length = 0;
   imageList.push(track.album.images[0].url);
-  document.getElementById('floatingcover').innerHTML = '<div id="floatingcover" style="display: none"><img id="floatingimage" src="'+track.album.images[0].url+'"/><div><span id="floatingname"><span></span></span><br><span id="floatingartist"><span></span></span></div></div>'
+  document.getElementById('floatingcover').innerHTML = '<img id="floatingimage" src="'+track.album.images[0].url+'"/><div><span id="floatingname"><span></span></span><br><span id="floatingartist"><span></span></span></div>'
   document.getElementById('floatingname').innerHTML = trackName;
   document.getElementById('floatingartist').innerHTML = artistName;
   fetchArtist(track.artists[0].uri, function(artist) {
