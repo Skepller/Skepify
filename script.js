@@ -616,12 +616,16 @@ function findInBeats(second){
 }
 
 function hideLogin() {
-  document.getElementById('biglogin').style.display = 'none';
+  console.log('hideLogin');
+  document.getElementById('biglogin').style.visibility = 'hidden';
+  document.getElementById('biglogin').style.opacity = '0';
   document.getElementById('options').style.display = 'block';
 }
 
 function showLogin() {
-  document.getElementById('biglogin').style.display = 'block';
+  console.log('showLogin');
+  document.getElementById('biglogin').style.visibility = 'visible';
+  document.getElementById('biglogin').style.opacity = '1';
 }
 
 function toast(title, subtitle) {
@@ -665,6 +669,7 @@ function setNowPlayingTrack(track) {
   trackURI = uri;
   getAlbumArtwork(trackURI);
   getTrackInfo(trackURI);
+  hideAll();
   toast(trackName, artistName + ' - ' + albumName);
 }
 
@@ -815,6 +820,7 @@ function initKeyboard() {
     console.log('key up', event.keyCode);
 
     // some hidden presets '1' .. '0'
+    //TODO REMOVE
     if (event.keyCode == 49) { sendPlayContext('spotify:album:2gaw3G7HBQuz93N8X89JIA', 1); }
     if (event.keyCode == 50) { sendPlayContext('spotify:album:2KWlNb50pLNM11pGqqVdSX'); }
     if (event.keyCode == 51) { sendPlayContext('spotify:album:7xrc6SpiFhcgBaLYbqfB7k', 1); }
@@ -871,17 +877,19 @@ function goFullScreen(){
 }
 
 function hideAll(){
-  document.getElementById('floatingcover').style.display = 'none';
+  document.getElementById('floatingcover').style.visibility = 'hidden';
+  document.getElementById('floatingcover').style.opacity = '0';
   document.getElementById('options').style.display = 'inline';
 }
 
 function showAll(){
-  document.getElementById('floatingcover').style.display = 'flex';
+  document.getElementById('floatingcover').style.visibility = 'visible';
+  document.getElementById('floatingcover').style.opacity = '1';
   document.getElementById('options').style.display = 'none';
 }
 
 function changeAcc(){
-  if(document.getElementById('biglogin').offsetParent === null){
+  if(document.getElementById('biglogin').style.visibility == 'hidden'){
     showLogin();
   } else{
     hideLogin();

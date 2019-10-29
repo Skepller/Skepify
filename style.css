@@ -27,11 +27,13 @@ canvas {
 }
 
 .biglogin {
-  display: none;
   position: absolute;
   top: 40%;
   width: 100%;
   text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 .biglogin a {
@@ -44,7 +46,6 @@ canvas {
   color: #fff;
   display: inline-block;
   text-align: center;
-  ;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
@@ -182,6 +183,9 @@ div.trackposition div.fill {
   padding: 30px;
   z-index: 200;
   text-align: left
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 #floatingname {
