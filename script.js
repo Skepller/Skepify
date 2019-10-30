@@ -190,12 +190,25 @@ function sendCommand(method, command, querystring) {
 }
 
 function fetchVectors(albumimage, callback) {
-  createRequest('POST', 'https://ilovepolygons.possan.se/convert', function (request) {
-    if (request.status >= 200 && request.status < 400) {
-      nextVectorData = JSON.parse(request.responseText);
+  var v = new Vectorizer();
+	v.url = albumimage;
+	v.cutoff = 10000;
+	v.threshold = 20;
+
+  v.go(function() {
+		if (v.error) {
+      console.log("ERRO PORRA");
+		} else {
+      nextVectorData = {
+				url: v.url,
+				cutoff: v.cutoff,
+				width: v.width,
+				height: v.height,
+				tris: v.tris
+			};
       callback();
-    }
-  }).send('url=' + encodeURIComponent(albumimage) + '&cutoff=10000&threshold=20');
+		}
+  });
 }
 
 function sendPlayContext(uri, offset) {
@@ -321,6 +334,7 @@ function initWebGLBuffers() {
 }
 
 function updateBuffers(vectordata) {
+  console.log("VECTORDATA: "+vectordata);
   var vertices = [];
   var colors = [];
   var cubeVertexIndices = [];
@@ -414,13 +428,16 @@ function updateBuffers(vectordata) {
 
   if (vectordata) {
     var scale = 1.0 / vectordata.height;
+    console.log("vectordata.height: "+vectordata.height);
     var xoffset = vectordata.width / 2;
+    console.log("vectordata.width: "+vectordata.width);
     var yoffset = vectordata.height / 2;
     for (var i = 0; i < vectordata.tris.length; i++) {
       var x = vectordata.tris[i];
       addFace(-((x.x0 + xoffset) * scale - 1.0), -((x.y0 + yoffset) * scale - 1.0), -((x.x1 + xoffset) * scale - 1.0), -((x.y1 + yoffset) * scale - 1.0), -((x.x2 + xoffset) * scale - 1.0), -((x.y2 + yoffset) * scale - 1.0),
               x.r / 255.0, x.g / 255.0, x.b / 255.0);
     }
+    console.log("vectordata.tris.length: "+vectordata.tris.length);
   }
 
   gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
@@ -495,6 +512,9 @@ function drawScene() {
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
     gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+
+    //console.log("LOL: "+cubeVertexIndexBuffer.numItems);
+
   }
 }
 
@@ -514,6 +534,7 @@ function tick() {
       console.log('Got album image..');
       fetchVectors(albumImageURL, function () {
         console.log('Got album vectors..');
+        console.log(nextVectorData);
         updateBuffers(nextVectorData);
         nextVectorData = null;
         state = 'fadein';
@@ -599,7 +620,7 @@ function updateTrackPosition() {
 function animateBar(second){
   value = 0;
   pos = findInBeats(second);
-  console.log(pos);
+  //console.log(pos);
   if (pos!=-1){
     value = parseFloat(beats[pos].confidence);
     document.getElementById("bar").style.height = String(value * 5) + "em";
