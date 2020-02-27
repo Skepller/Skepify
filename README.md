@@ -21,6 +21,16 @@ The visualizer is based on an example (by Possan) of how to use the [Spotify Con
 
 [Plamere version](https://github.com/plamere/webgl-spotify-connect-now-playing-screen-example)
 
-Skepify also uses several 'Browserify-ed' NodeJS libraries and code from possan's [polyserver](https://github.com/possan/polyserver) to vectorize the album covers and images into triangle data for the renderer.
+Skepify also uses several NodeJS libraries that have been 'Browserify-ed' and code from possan's [polyserver](https://github.com/possan/polyserver) to vectorize the album covers and images into triangle data for the renderer.
 
 Enjoy.
+
+---
+TO-DO:
+
+- Reacquire token after expiration
+- Better UI and Menus
+- Better starting screen
+- Fix some buttons unintended behaviour
+- Fix background bar/brightness change
+- Optimizations
