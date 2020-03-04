@@ -868,6 +868,7 @@ function initKeyboard() {
       if (trackPlaying) {
         trackPlaying = false;
         sendCommand('PUT', 'pause');
+        gl.clearColor(0,0,0,1);
       } else {
         trackPlaying = true;
         sendCommand('PUT', 'play');
